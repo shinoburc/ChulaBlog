@@ -1,0 +1,631 @@
+2005-03-01 01:38  shinobu
+
+	* Class/ChulaDBIO.php, Plugins/EntryEditor.php,
+	  Plugins/TrackBack.php, Schema/AcceptTrackBack.php,
+	  Schema/accepttrackback.table.sql, Schema/Data/chulablog.db.ini:
+	  AcceptTrackBackテーブルを追加。 EntryEditor
+	  でエントリインサートフォームを表示するときにEntryEditFormNotificationを投げるようにした。
+	  EntryEditor でエントリがインサートされるときに
+	  EntryInsertNotification を投げるようにした。 TrackBack
+	  でEntryEditorが発するNotificationを受け取り、TrackBackを受け付けるかの選択チェックボックスを
+	  表示するようにし、チェックボックスがonならAcceptTrackBackテーブルにその情報をインサートするように修正。
+
+2005-02-22 17:26  shinobu
+
+	* Plugins/LoginMD5.php:
+	  ログオフしても再度ログインボタンをクリックすると、パスワード無しで
+	  ログインできてしまうバグを修正。
+	  JavaScriptでログインフォームを表示するように修正。
+
+2005-02-22 02:12  shinobu
+
+	* Plugins/LoginMD5.php: descriptionを修正
+
+2005-02-22 02:05  shinobu
+
+	* ChangeLog: update
+
+2005-02-22 01:50  shinobu
+
+	* Schema/: role.data.sql, state.data.sql:
+	  デフォルトで読み込む admin role のプラグインに
+	  TemplateConfig を追加。
+
+2005-02-22 01:33  shinobu
+
+	* Plugins/HTMLHeader.php, Plugins/Login.php, Plugins/LoginMD5.php,
+	  Plugins/TemplateConfig.php, Schema/role.data.sql,
+	  Schema/state.data.sql, Templates/calendar_daisuki.tpl,
+	  Templates/default.tpl, Templates/simple.tpl, js/md5.js: ##HEAD##
+	  ポジションを追加し HTMLHeader プラグインを追加。
+	  LoginMD5
+	  プラグインを追加し、平文認証以外の認証ができるようにした。
+	  jsディレクトリを追加し、md5.jsを追加。
+	  LoginMD5ではこのmd5.jsを利用して暗号化している。
+
+2005-02-21 19:02  shinobu
+
+	* Class/ChulaDBIO.php, Plugins/TemplateConfig.php:
+	  Plugins/TemplateConfig.php
+	  でテンプレートファイル名の判定を厳しくした。
+
+2005-02-21 12:38  shinobu
+
+	* Class/Session.php, Plugins/PluginConfig.php,
+	  Plugins/TemplateConfig.php: Session::reloadに引数を許した。
+	  templates以下にとりあえずはディレクトリを作成しないように修正。
+
+2005-02-21 03:20  shinobu
+
+	* ChangeLog: update
+
+2005-02-21 03:10  shinobu
+
+	* Class/Session.php: コメントを修正
+
+2005-02-21 03:05  shinobu
+
+	* Class/ChulaDBIO.php, Class/HTTPQuery.php, Plugins/Calendar.php,
+	  Plugins/ChulaView.php, Plugins/TemplateConfig.php:
+	  テンプレートを選択・編集する TemplateConfig
+	  プラグインを追加
+
+2005-02-21 02:46  shinobu
+
+	* Class/Session.php, Plugins/Login.php, Plugins/PluginConfig.php:
+	  reload()を実装。
+
+2005-02-17 22:38  shinobu
+
+	* Plugins/PluginConfig.php: プラグイン情報に owner only
+	  を追加表示
+
+2005-02-17 21:57  shinobu
+
+	* index.php, Class/InstanceManager.php, Class/Session.php,
+	  Plugins/Admin.php, Plugins/Archiver.php, Plugins/Calendar.php,
+	  Plugins/Category.php, Plugins/CategoryEditor.php,
+	  Plugins/ChulaView.php, Plugins/EntryEditor.php,
+	  Plugins/FunctionZone.php, Plugins/LatestEntry.php,
+	  Plugins/Login.php, Plugins/PluginConfig.php,
+	  Plugins/TrackBack.php, Plugins/UserListUp.php:
+	  インスタンスの受渡しで =& を = に修正。
+	  php4との互換性を持たせようと思ってたんだけど、=&
+	  だとまれにエラーが出るっぽい?
+
+2005-02-17 21:11  shinobu
+
+	* index.php, Class/ChulaPlugin.php, Plugins/Admin.php,
+	  Plugins/CategoryEditor.php, Plugins/EntryEditor.php,
+	  Plugins/PluginConfig.php:
+	  読み込むプラグインを$_GET['id']によって変えるように修正。
+	  ページオーナーだけが読み込むことのできるプラグインを設定する
+	  ownerOnly() をChulaPlugin.phpに追加。
+
+2005-02-17 02:39  shinobu
+
+	* init.sh, Class/HTTPQuery.php, Plugins/ChulaView.php: $_GET["id"]
+	  == "" のときに HTTPQuery->getId()
+	  はNULLを返すように修正。
+	  テンプレートの読み込みを$_GET["id"]によって変えるように修正。
+
+2005-02-16 18:20  shinobu
+
+	* Plugins/PluginConfig.php, Schema/state.data.sql:
+	  sdの3番目に値がセットされていると、PluginConfigがheader()を呼ぶバグを修正
+
+2005-02-16 00:16  shinobu
+
+	* ChangeLog: update
+
+2005-02-16 00:16  shinobu
+
+	* Templates/: calendar_daisuki.tpl, simple.tpl:
+	  ポジションを指定する方式に修正
+
+2005-02-15 23:53  shinobu
+
+	* index.php, Class/ChulaDBIO.php, Class/ChulaPlugin.php,
+	  Plugins/Admin.php, Plugins/Archiver.php, Plugins/Calendar.php,
+	  Plugins/Category.php, Plugins/CategoryEditor.php,
+	  Plugins/ChulaView.php, Plugins/EntryEditor.php,
+	  Plugins/FunctionZone.php, Plugins/LatestEntry.php,
+	  Plugins/Login.php, Plugins/PluginConfig.php,
+	  Plugins/TrackBack.php, Plugins/UserListUp.php, Schema/State.php,
+	  Schema/state.data.sql, Schema/state.table.sql,
+	  Schema/Data/chulablog.db.ini, Templates/default.tpl:
+	  良く使うデータベース関連の処理をまとめた
+	  Class/ChulaDBIO.php を追加。 Plugins/PluginConfig.php
+	  でplugInTrigger,plugOutTriggerを呼ぶように修正。
+	  プラグインにplugInTrigger,plugOutTriggerを実装し、自分自身のとりうる状態
+	  のビューがどこに表示されるかをinsert,deleteするようにした。
+	  stateテーブルを追加。
+	  デフォルトで読み込むプラグインのstate情報をinsertする
+	  Schema/state.data.sql を追加。
+	  あぁ疲れた。バグを実装。;-P
+
+2005-02-14 19:30  shinobu
+
+	* Plugins/PluginConfig.php:
+	  PlugOutできないプラグインも表中に含めた
+
+2005-02-14 13:53  shinobu
+
+	* Plugins/: Login.php, PluginConfig.php: $pos = array_search
+	  で配列の先頭に検索がヒットした場合、
+	  プラグインが削除できないバグを修正
+
+2005-02-14 00:07  shinobu
+
+	* Plugins/: Admin.php, Archiver.php, Calendar.php, Category.php,
+	  CategoryEditor.php, ChulaView.php, EntryEditor.php,
+	  FunctionZone.php, LatestEntry.php, Login.php, PluginConfig.php,
+	  TrackBack.php, UserListUp.php:
+	  プラグイン中のgetState()で用いている$nameをself::$static_nameに修正
+
+2005-02-13 23:29  shinobu
+
+	* ChangeLog: ChangeLog update
+
+2005-02-13 23:28  shinobu
+
+	* Class/ChulaPlugin.php, Plugins/ChulaView.php,
+	  Plugins/PluginConfig.php:
+	  Class/ChulaPlugin.phpで定義されている関数を全て public
+	  static に変更
+
+2005-02-13 23:21  shinobu
+
+	* Class/ChulaPlugin.php, Plugins/Admin.php, Plugins/Archiver.php,
+	  Plugins/Calendar.php, Plugins/Category.php,
+	  Plugins/CategoryEditor.php, Plugins/ChulaView.php,
+	  Plugins/EntryEditor.php, Plugins/FunctionZone.php,
+	  Plugins/LatestEntry.php, Plugins/Login.php,
+	  Plugins/PluginConfig.php, Plugins/TrackBack.php,
+	  Plugins/UserListUp.php: getState()をpublic
+	  staticに変更。 $static_nameを追加。
+
+2005-02-13 17:13  shinobu
+
+	* ChangeLog: cvs2clで作成したChangeLogを追加
+
+2005-02-13 16:52  shinobu
+
+	* Class/Session.php: 不要な変数を削除
+
+2005-02-13 16:51  shinobu
+
+	* Class/Session.php: スペルミスを修正  fro -> for
+
+2005-02-13 15:19  shinobu
+
+	* Class/.htaccess, Plugins/.htaccess, Schema/.htaccess,
+	  Templates/.htaccess, Lib/.htaccess: .htaccessを追加
+
+2005-02-13 15:04  shinobu
+
+	* index.php, Class/HTTPQuery.php, Plugins/Admin.php,
+	  Plugins/Archiver.php, Plugins/Calendar.php, Plugins/Category.php,
+	  Plugins/CategoryEditor.php, Plugins/EntryEditor.php,
+	  Plugins/LatestEntry.php, Plugins/Login.php,
+	  Plugins/PluginConfig.php, Plugins/TrackBack.php,
+	  Plugins/UserListUp.php:
+	  $_GET['id'],$_GET['sd']へのアクセスをClass/HTTPQuery.phpを介すように修正
+
+2005-02-12 13:52  shinobu
+
+	* Class/: ChulaPlugin.php, Config.php, HTTPQuery.php,
+	  InstanceManager.php, Notification.php, NotificationCenter.php,
+	  Permission.php, Session.php, SystemInit.php:
+	  Class以下にphpDocumentorに対応したコメントを記入
+
+2005-02-12 00:28  shinobu
+
+	* Plugins/: Admin.php, Archiver.php, Calendar.php, Category.php,
+	  CategoryEditor.php, ChulaView.php, EntryEditor.php,
+	  FunctionZone.php, LatestEntry.php, Login.php, PluginConfig.php,
+	  TrackBack.php, UserListUp.php: description()を追加
+
+2005-02-12 00:19  shinobu
+
+	* Class/ChulaPlugin.php: description()をpublic
+	  staticにした。
+
+2005-02-11 21:07  shinobu
+
+	* index.php, Class/ChulaPlugin.php, Plugins/Admin.php,
+	  Plugins/Archiver.php, Plugins/Calendar.php, Plugins/Category.php,
+	  Plugins/CategoryEditor.php, Plugins/ChulaView.php,
+	  Plugins/EntryEditor.php, Plugins/FunctionZone.php,
+	  Plugins/LatestEntry.php, Plugins/Login.php,
+	  Plugins/PluginConfig.php, Plugins/TrackBack.php,
+	  Plugins/UserListUp.php: Pluginのルートクラス
+	  ChulaPlugin.php をClassに追加。
+	  全てのプラグインで ChulaPlugin 継承。
+	  プラグインのPlug in/out を行うプラグイン
+	  PluginConfig.php を実装。
+
+2005-02-11 18:24  shinobu
+
+	* Schema/role.data.sql:
+	  ChulaViewを再度plugin_listから外した。
+
+2005-02-11 00:19  shinobu
+
+	* Schema/role.data.sql:
+	  デフォルトのplugin_listにChulaViewを追加。
+
+2005-02-09 18:37  shinobu
+
+	* index.php, Class/Session.php, Plugins/Admin.php,
+	  Plugins/Calendar.php, Plugins/CategoryEditor.php,
+	  Plugins/ChulaView.php, Plugins/EntryEditor.php,
+	  Plugins/FunctionZone.php, Plugins/Login.php,
+	  Plugins/PluginConfig.php:
+	  Session.phpにsetter,getter用の__callを追加
+
+2005-02-08 18:33  shinobu
+
+	* index.php, Plugins/Admin.php, Plugins/ChulaView.php,
+	  Schema/Permission.php, Schema/Role.php, Schema/UserInfo.php,
+	  Schema/permission.table.sql, Schema/role.data.sql,
+	  Schema/role.table.sql, Schema/userconfig.data.sql,
+	  Schema/userinfo.data.sql, Schema/userinfo.table.sql,
+	  Schema/Data/chulablog.db.ini: Permissionテーブルを削除。
+	  Roleテーブルを追加。
+	  userinfoのadmin_flagをrole_idに修正。
+
+2005-02-07 19:34  shinobu
+
+	* Plugins/Category.php: getState()を修正
+
+2005-02-07 19:34  shinobu
+
+	* Schema/userconfig.data.sql: 初期データを修正
+
+2005-02-07 18:30  shinobu
+
+	* Class/HTTPQuery.php: $_GET,$_POSTのラッパークラス
+
+2005-02-07 18:29  shinobu
+
+	* Class/Session.php, Config/chulablog.ini, Plugins/Login.php:
+	  session_expire_timeを追加し、GCを実装
+
+2005-02-07 18:28  shinobu
+
+	* Class/InstanceManager.php: タブを空白に修正
+
+2005-02-06 21:50  shinobu
+
+	* Schema/userconfig.data.sql:
+	  guestがのplugin_listを限定
+
+2005-02-06 21:39  shinobu
+
+	* index.php, Plugins/ChulaView.php:
+	  $plugin_listと$templateをグローバル変数から外した
+
+2005-02-06 21:09  shinobu
+
+	* index.php, Plugins/PluginConfig.php, Schema/UserConfig.php,
+	  Schema/userconfig.data.sql, Schema/userconfig.table.sql,
+	  Schema/Data/chulablog.db.ini:
+	  pluginとtemplateの設定をDBに入れた
+
+2005-02-03 19:49  shinobu
+
+	* Config/chulablog.ini:
+	  session_life_timeを10から600に変更
+
+2005-02-03 18:49  shinobu
+
+	* Plugins/Admin.php:
+	  AddUserNotification,DelUserNotificationを追加
+
+2005-02-03 18:48  shinobu
+
+	* Class/Session.php, index.php, Config/chulablog.ini:
+	  自動ログアウトを実装
+
+2005-02-03 00:37  shinobu
+
+	* Plugins/Login.php:
+	  LogoutフォームをLoginフォームに含めた
+
+2005-02-03 00:28  shinobu
+
+	* Plugins/FunctionZone.php: guest_user_idのときは"Your id :
+	  "を表示しないように修正
+
+2005-02-03 00:23  shinobu
+
+	* Config/chulablog.ini, Plugins/Admin.php:
+	  super_admin_user_id,guest_user_idは削除できないように修正
+
+2005-02-03 00:09  shinobu
+
+	* Plugins/Login.php: Logoutを実装
+
+2005-02-02 19:44  shinobu
+
+	* Plugins/Category.php:
+	  $key2が無いときにNoticeが出てたのを修正
+
+2005-02-02 19:06  shinobu
+
+	* index.php, Plugins/Admin.php, Plugins/Login.php,
+	  Schema/Data/chulablog.db.ini, Templates/default.tpl:
+	  Adminプラグインを追加
+
+2005-02-02 09:09  shinobu
+
+	* index.php: Loginプラグインをロードするように修正
+
+2005-02-02 06:29  shinobu
+
+	* Plugins/Login.php: submitにvalue="login"を追加
+
+2005-02-02 06:27  shinobu
+
+	* Plugins/Login.php:
+	  password入力フォームをpasswordタイプに変更
+
+2005-02-02 06:16  shinobu
+
+	* Plugins/Login.php: add login (testing)
+
+2005-02-02 05:17  shinobu
+
+	* Plugins/EntryEditor.php:
+	  自分で作成したカテゴリのみリストアップするように修正
+
+2005-02-01 20:00  shinobu
+
+	* Plugins/: CategoryEditor.php, EntryEditor.php:
+	  始めてカテゴリ、エントリを作成するときに出るNoticeを出ないように修正
+
+2005-02-01 19:56  shinobu
+
+	* Plugins/Calendar.php:
+	  $entry_existsに値を入れるときのNoticeを出ないように修正
+
+2005-02-01 18:16  shinobu
+
+	* Plugins/LatestEntry.php:
+	  title属性とfunction_zone()を追加
+
+2005-02-01 18:15  shinobu
+
+	* index.php, Plugins/FunctionZone.php, Templates/default.tpl:
+	  FunctionZoneを追加(未完成)
+
+2005-02-01 18:14  shinobu
+
+	* Plugins/Calendar.php: ChangeTargetを追加
+
+2005-02-01 01:42  shinobu
+
+	* Class/Permission.php, Schema/Permission.php,
+	  Schema/permission.table.sql, Schema/Data/chulablog.db.ini:
+	  Permission連ファイルを追加
+
+2005-01-31 21:00  shinobu
+
+	* Class/SystemInit.php: sqlite_query()の位置を修正
+
+2005-01-31 19:58  shinobu
+
+	* Plugins/Category.php:
+	  $ary[]にに対するアクセスで発生するwarningが出ないように修正
+
+2005-01-31 19:57  shinobu
+
+	* Plugins/Calendar.php:
+	  月末にエントリが表示されないバグの修正
+
+2005-01-31 00:02  shinobu
+
+	* Plugins/Calendar.php:
+	  $_GET['id']が設定されていないときの処理を強化
+
+2005-01-30 23:30  shinobu
+
+	* Plugins/: Calendar.php, Category.php, CategoryEditor.php,
+	  EntryEditor.php, LatestEntry.php:
+	  $_GET['id']がセットされていないときの処理を追加.warning対策.
+
+2005-01-30 23:17  shinobu
+
+	* index.php:
+	  $_GET['id']がセットされているときにはUserListUpを呼ばないように修正
+
+2005-01-30 23:11  shinobu
+
+	* index.php, Plugins/UserListUp.php, Templates/default.tpl:
+	  UserListUp.phpを追加
+
+2005-01-30 22:38  shinobu
+
+	* Plugins/Archiver.php, Plugins/Calendar.php, Plugins/Category.php,
+	  Plugins/CategoryEditor.php, Plugins/EntryEditor.php,
+	  Plugins/LatestEntry.php, Plugins/TrackBack.php, Schema/Entry.php,
+	  Schema/entry.table.sql, Schema/Data/chulablog.db.ini: $_GET['id']
+	  によるユーザ別コンテンツ識別を追加
+
+2005-01-30 22:04  shinobu
+
+	* Class/Session.php, Plugins/CategoryEditor.php,
+	  Schema/Category.php, Schema/category.table.sql,
+	  Schema/Data/chulablog.db.ini:
+	  categoryテーブルにuser_idを追加
+
+2005-01-30 20:25  shinobu
+
+	* Config/chulablog.ini: guest_user_idを追加
+
+2005-01-30 20:21  shinobu
+
+	* Class/SystemInit.php, Schema/groupinfo.data.sql,
+	  Schema/userinfo.data.sql: groupinfo.data.sql,userinfo.data.sql
+	  を追加
+
+2005-01-30 19:50  shinobu
+
+	* Schema/: UserInfo.php, userinfo.table.sql: admin_flagを追加
+
+2005-01-30 19:29  shinobu
+
+	* Schema/: GroupInfo.php, UserInfo.php, groupinfo.table.sql,
+	  userinfo.table.sql: groupinfo,userinfo 関連のファイルを追加
+
+2005-01-30 19:23  shinobu
+
+	* Schema/: GroupInfo.table.sql, UserInfo.table.sql:
+	  GroupInfo,UserInfo のファイル名変更
+
+2005-01-30 19:20  shinobu
+
+	* Schema/Data/chulablog.db.ini: userinfo,groupinfo を追加
+
+2005-01-30 19:19  shinobu
+
+	* Schema/: GroupInfo.table.sql, UserInfo.table.sql:
+	  UserInfo,GroupInfo を追加
+
+2005-01-30 19:17  shinobu
+
+	* Schema/: group_info.table.sql, user_info.table.sql:
+	  ファイル名変更のためにファイルを削除
+
+2005-01-30 19:14  shinobu
+
+	* Schema/: group_info.table.sql, user_info.table.sql:
+	  user_info,group_info テーブルを追加
+
+2005-01-30 15:25  shinobu
+
+	* Config/.htaccess: .htaccessを追加
+
+2005-01-30 15:10  shinobu
+
+	* index.php: Dataディレクトリに関するエラーメッセージを修正
+
+2005-01-30 14:57  shinobu
+
+	* init.sh: mkdirを削除
+
+2005-01-30 14:50  shinobu
+
+	* Class/Session.php: session_* のラッパークラス Session.php
+	  を追加
+
+2005-01-30 14:49  shinobu
+
+	* index.php, Class/SystemInit.php: SystemInit.phpを追加
+
+2005-01-30 14:47  shinobu
+
+	* init.sh: sqliteを用いたコマンドを削除
+
+2005-01-30 14:46  shinobu
+
+	* Data/chulablog.db: chulablog.dbを削除
+
+2005-01-30 04:16  shinobu
+
+	* Config/chulablog.ini: session_save_path を追加
+
+2005-01-30 03:47  shinobu
+
+	* Data/.htaccess: Dataディレクトリは見られるとまずいので
+	  .htaccess でアクセス制限するようにした
+
+2005-01-28 20:55  shinobu
+
+	* Class/Config.php, Plugins/Calendar.php, Plugins/Archiver.php:
+	  TABをスペースに変換
+
+2005-01-26 23:45  shinobu
+
+	* Plugins/Category.php: private な function を public
+	  から変更
+
+2005-01-26 23:44  shinobu
+
+	* index.php, Config/chulablog.ini: Config/chulablog.ini
+	  から設定を読み込むように修正
+
+2005-01-26 18:35  shinobu
+
+	* Plugins/Category.php:
+	  $calをdate()使って成形するように修正
+
+2005-01-25 18:12  shinobu
+
+	* Class/Notification.php: objctをobjectに修正
+
+2005-01-25 18:10  shinobu
+
+	* Plugins/Category.php:
+	  display()をcategoryID,entryIDで絞りこんで表示するように修正
+
+2005-01-24 23:15  shinobu
+
+	* Class/Notification.php: $Id: ChangeLog,v 1.6 2005/02/28 17:04:09 shinobu Exp $の修正
+
+2005-01-24 22:11  shinobu
+
+	* index.php, Class/InstanceManager.php, Class/im.php,
+	  Data/chulablog.db: im.phpをInstanceManager.phpに改名
+
+2005-01-24 21:40  shinobu
+
+	* Lib/pear/: DB.php, Date.php, PEAR.php, DB/DataObject.php,
+	  DB/common.php, DB/dbase.php, DB/fbsql.php, DB/ibase.php,
+	  DB/ifx.php, DB/msql.php, DB/mssql.php, DB/mysql.php,
+	  DB/mysqli.php, DB/oci8.php, DB/odbc.php, DB/pgsql.php,
+	  DB/sqlite.php, DB/storage.php, DB/sybase.php,
+	  DB/DataObject/Cast.php, DB/DataObject/Error.php,
+	  DB/DataObject/Generator.php, DB/DataObject/createTables.php,
+	  Date/Calc.php, Date/Human.php, Date/Span.php, Date/TimeZone.php,
+	  PEAR/Autoloader.php, PEAR/Builder.php, PEAR/Command.php,
+	  PEAR/Common.php, PEAR/Config.php, PEAR/Dependency.php,
+	  PEAR/Downloader.php, PEAR/ErrorStack.php, PEAR/Exception.php,
+	  PEAR/Installer.php, PEAR/Packager.php, PEAR/Registry.php,
+	  PEAR/Remote.php, PEAR/Command/Auth.php, PEAR/Command/Build.php,
+	  PEAR/Command/Common.php, PEAR/Command/Config.php,
+	  PEAR/Command/Install.php, PEAR/Command/Mirror.php,
+	  PEAR/Command/Package.php, PEAR/Command/Registry.php,
+	  PEAR/Command/Remote.php, PEAR/Frontend/CLI.php: pearの追加
+
+2005-01-24 21:39  shinobu
+
+	* index.php, Data/chulablog.db: pearを追加
+
+2005-01-24 21:00  shinobu
+
+	* index.php, init.sh, Class/Config.php, Class/Notification.php,
+	  Class/NotificationCenter.php, Class/im.php, Config/chulablog.ini,
+	  Data/chulablog.db, Plugins/Archiver.php, Plugins/Calendar.php,
+	  Plugins/Category.php, Plugins/CategoryEditor.php,
+	  Plugins/ChulaView.php, Plugins/EntryEditor.php,
+	  Plugins/LatestEntry.php, Plugins/TrackBack.php,
+	  Schema/Category.php, Schema/Entry.php, Schema/category.table.sql,
+	  Schema/entry.table.sql, Schema/Data/chulablog.db.ini,
+	  Templates/calendar_daisuki.tpl, Templates/default.tpl,
+	  Templates/simple.tpl: ChulaBlog main repository
+
+2005-01-24 21:00  shinobu
+
+	* index.php, init.sh, Class/Config.php, Class/Notification.php,
+	  Class/NotificationCenter.php, Class/im.php, Config/chulablog.ini,
+	  Data/chulablog.db, Plugins/Archiver.php, Plugins/Calendar.php,
+	  Plugins/Category.php, Plugins/CategoryEditor.php,
+	  Plugins/ChulaView.php, Plugins/EntryEditor.php,
+	  Plugins/LatestEntry.php, Plugins/TrackBack.php,
+	  Schema/Category.php, Schema/Entry.php, Schema/category.table.sql,
+	  Schema/entry.table.sql, Schema/Data/chulablog.db.ini,
+	  Templates/calendar_daisuki.tpl, Templates/default.tpl,
+	  Templates/simple.tpl: Initial revision
+
